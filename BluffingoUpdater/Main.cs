@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
+using System.Security.Cryptography;
 using System.Web.Script.Serialization;
 using System.Windows.Forms;
 
@@ -143,7 +145,12 @@ namespace BluffingoUpdater
             Console.WriteLine("Opening time machine dialog.");
             if (!timeMachineDialog.Visible)
             {
-                timeMachineDialog.ShowDialog();
+                DialogResult timeMachineResult = timeMachineDialog.ShowDialog();
+                if (timeMachineResult == DialogResult.OK)
+                {
+                    request.timeMachineDate = timeMachineDialog.time;
+                    updateSoftwareList();
+                }
             }
         }
 

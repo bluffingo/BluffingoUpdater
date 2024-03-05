@@ -11,6 +11,8 @@ namespace BluffingoUpdater
 {
     public partial class TimeMachineDialog : Form
     {
+        public DateTime time = DateTime.Now;
+
         public TimeMachineDialog()
         {
             InitializeComponent();
@@ -19,6 +21,11 @@ namespace BluffingoUpdater
         private void button1_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void monthCalendar1_DateChanged(object sender, DateRangeEventArgs e)
+        {
+            time = e.Start;
         }
     }
 }

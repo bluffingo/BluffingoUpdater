@@ -17,6 +17,7 @@ namespace BluffingoUpdater
         //string domain = "http://localhost";
         string domain = "http://10.0.0.178";
         string filename = "";
+        public DateTime timeMachineDate = DateTime.Now;
 
         public WebRequest()
         {
@@ -46,7 +47,7 @@ namespace BluffingoUpdater
 
         public string getVersions()
         {
-            Stream data = client.OpenRead(domain + "/api/get_versions/" + DateTime.Now.ToString("yyyy-MM-dd"));
+            Stream data = client.OpenRead(domain + "/api/get_versions/" + timeMachineDate.ToString("yyyy-MM-dd"));
             StreamReader reader = new StreamReader(data);
             string s = reader.ReadToEnd();
             data.Close();

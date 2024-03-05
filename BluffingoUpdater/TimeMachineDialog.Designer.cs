@@ -37,9 +37,11 @@
             // monthCalendar1
             // 
             this.monthCalendar1.Location = new System.Drawing.Point(17, 25);
+            this.monthCalendar1.MaxSelectionCount = 1;
+            this.monthCalendar1.MinDate = new System.DateTime(2000, 1, 1, 0, 0, 0, 0);
             this.monthCalendar1.Name = "monthCalendar1";
-            this.monthCalendar1.ShowToday = false;
             this.monthCalendar1.TabIndex = 0;
+            this.monthCalendar1.DateChanged += new System.Windows.Forms.DateRangeEventHandler(this.monthCalendar1_DateChanged);
             // 
             // button2
             // 
@@ -90,7 +92,7 @@
             this.MinimizeBox = false;
             this.Name = "TimeMachineDialog";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "TimeMachineDialog";
+            this.Text = "Time Travel";
             this.ResumeLayout(false);
             this.PerformLayout();
 

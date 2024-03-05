@@ -42,9 +42,11 @@
             // 
             // listView1
             // 
-            this.listView1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.listView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.listView1.GridLines = true;
+            this.listView1.HideSelection = false;
             this.listView1.Location = new System.Drawing.Point(13, 27);
             this.listView1.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.listView1.MultiSelect = false;
@@ -97,14 +99,14 @@
             // 
             this.settingsToolStripMenuItem.Name = "settingsToolStripMenuItem";
             this.settingsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.settingsToolStripMenuItem.Text = "Select software";
+            this.settingsToolStripMenuItem.Text = "Choose software";
             this.settingsToolStripMenuItem.Click += new System.EventHandler(this.settingsToolStripMenuItem_Click);
             // 
             // timeMachineToolStripMenuItem
             // 
             this.timeMachineToolStripMenuItem.Name = "timeMachineToolStripMenuItem";
             this.timeMachineToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.timeMachineToolStripMenuItem.Text = "Time Machine";
+            this.timeMachineToolStripMenuItem.Text = "Time Travel";
             this.timeMachineToolStripMenuItem.Click += new System.EventHandler(this.timeMachineToolStripMenuItem_Click);
             // 
             // Main
