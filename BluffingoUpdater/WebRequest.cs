@@ -13,6 +13,8 @@ namespace BluffingoUpdater
 {
     public class WebRequest
     {
+        public event Action<int> ProgressChanged;
+
         WebClient client = new WebClient();
         //string domain = "http://localhost";
         string domain = "http://10.0.0.178";
@@ -37,6 +39,7 @@ namespace BluffingoUpdater
                 }
 
                 client.DownloadFileCompleted += WebClientDownloadCompleted;
+                client.DownloadProgressChanged += WebClientProgressChanged;
                 client.DownloadFileAsync(uri, filename);
             }
             catch (Exception ex)
@@ -70,6 +73,17 @@ namespace BluffingoUpdater
         private void WebClientDownloadCompleted(object sender, AsyncCompletedEventArgs e)
         {
             Process.Start(filename);
+            OnProgressChanged(0);
+        }
+
+        private void WebClientProgressChanged(object sender, DownloadProgressChangedEventArgs e)
+        {
+            OnProgressChanged(e.ProgressPercentage);
+        }
+
+        private void OnProgressChanged(int progress)
+        {
+            ProgressChanged?.Invoke(progress);
         }
     }
 }

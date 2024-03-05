@@ -21,6 +21,8 @@ namespace BluffingoUpdater
             InitializeComponent();
             settingDialog.Visible = false;
             timeMachineDialog.Visible = false;
+
+            request.ProgressChanged += SetProgress;
         }
 
         private void updateSoftwareList()
@@ -194,6 +196,18 @@ namespace BluffingoUpdater
         {
             AboutBox aboutBox = new AboutBox();
             aboutBox.ShowDialog();
+        }
+
+        public void SetProgress(int progress)
+        {
+            progressBar.Value = progress;
+            // makes the progress bar move faster on vista+ since it has a
+            // very slow animation
+            if (progressBar.Value > 0)
+            {
+                progressBar.Value = progress - 1;
+                progressBar.Value = progress;
+            }
         }
     }
 }
