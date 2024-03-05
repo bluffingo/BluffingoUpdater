@@ -46,7 +46,7 @@ namespace BluffingoUpdater
 
         public string getVersions()
         {
-            Stream data = client.OpenRead(domain + "/api/bluffingo_updater_test/get_versions/" + DateTime.Now.ToString("yyyy-MM-dd"));
+            Stream data = client.OpenRead(domain + "/api/get_versions/" + DateTime.Now.ToString("yyyy-MM-dd"));
             StreamReader reader = new StreamReader(data);
             string s = reader.ReadToEnd();
             data.Close();
@@ -57,7 +57,7 @@ namespace BluffingoUpdater
 
         public string getSoftware()
         {
-            Stream data = client.OpenRead(domain + "/api/bluffingo_updater_test/get_software");
+            Stream data = client.OpenRead(domain + "/api/get_software");
             StreamReader reader = new StreamReader(data);
             string s = reader.ReadToEnd();
             data.Close();
