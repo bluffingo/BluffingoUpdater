@@ -25,14 +25,6 @@ namespace BluffingoUpdater
 
         private void updateSoftwareList()
         {
-#if !DEBUG
-            DateTime d1 = new DateTime(2016, 12, 31);
-            if (d1 < DateTime.Now)
-            {
-                MessageBox.Show("Bluffingo's Updater is not intended to be used with the current date.", "Bluffingo's Updater", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            }
-#endif
-
             clear();
 
             string s = request.GetVersions();
@@ -135,6 +127,15 @@ namespace BluffingoUpdater
             Font = SystemFonts.MessageBoxFont;
             createMenu();
             updateSoftwareList();
+
+#if !DEBUG
+            DateTime d1 = new DateTime(2016, 12, 31);
+            if (d1 < DateTime.Now)
+            {
+                MessageBox.Show("Bluffingo's Updater is not intended to be used with the current date.", "Bluffingo's Updater", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                OpenTimeTravelDialog();
+            }
+#endif
         }
 
         private void createMenu()
@@ -144,7 +145,7 @@ namespace BluffingoUpdater
             MenuItem propertiesMenu = new MenuItem("Properties");
 
             MenuItem chooseSoftwareMenu = new MenuItem("Choose software", new EventHandler(chooseSoftwareMenuClicked));
-            MenuItem timeTravelMenu = new MenuItem("Time travel", new EventHandler(timeTravelMenuClicked));
+            MenuItem timeTravelMenu = new MenuItem("Time travel", new EventHandler(TimeTravelMenuClicked));
 
             propertiesMenu.MenuItems.Add(chooseSoftwareMenu);
             propertiesMenu.MenuItems.Add(timeTravelMenu);
@@ -170,7 +171,12 @@ namespace BluffingoUpdater
             }
         }
 
-        private void timeTravelMenuClicked(object sender, EventArgs e)
+        private void TimeTravelMenuClicked(object sender, EventArgs e)
+        {
+            OpenTimeTravelDialog();
+        }
+
+        private void OpenTimeTravelDialog()
         {
             Console.WriteLine("Opening time machine dialog.");
             if (!timeMachineDialog.Visible)
