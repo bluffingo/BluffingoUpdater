@@ -1,8 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.IO;
-using System.Security.Cryptography;
+using System.Drawing;
 using System.Web.Script.Serialization;
 using System.Windows.Forms;
 
@@ -33,10 +32,10 @@ namespace BluffingoUpdater
                 MessageBox.Show("Bluffingo's Updater is not intended to be used with the current date.", "Bluffingo's Updater", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
 #endif
-                
+
             clear();
 
-            string s = request.getVersions();
+            string s = request.GetVersions();
 
             var obj = ser.DeserializeObject(s) as ICollection;
 
@@ -98,7 +97,7 @@ namespace BluffingoUpdater
         private void makeTheColumns()
         {
             //imageList1.Images.Add("GenericIcon", BluffingoUpdater.Properties.Resources.icon);
-            imageList1.Images.Add("GenericIcon", Icons.Extract("shell32.dll", 162, true));
+            imageList1.Images.Add("GenericIcon", WindowsStuff.ExtractIcon("shell32.dll", 162, true));
             for (int i = 0; i < listView1.Items.Count; i++)
             {
                 listView1.Items[i].ImageIndex = 0;
@@ -111,36 +110,67 @@ namespace BluffingoUpdater
             listView1.SmallImageList = imageList1;
         }
 
-        private void button3_Click(object sender, EventArgs e)
+        private void Button3_Click(object sender, EventArgs e)
         {
             if (!string.IsNullOrEmpty(url))
             {
-                request.downloadAndRunSoftware(url);
+                request.DownloadAndRunInstaller(url);
             }
         }
 
-        private void listView1_SelectedIndexChanged(object sender, EventArgs e)
+        private void ListView1_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (isDownloadedList)
             {
                 ListView.SelectedListViewItemCollection selected = this.listView1.SelectedItems;
-                 foreach (ListViewItem item in selected)
+                foreach (ListViewItem item in selected)
                 {
                     url = item.SubItems[3].Text;
                 }
             }
         }
 
-        private void settingsToolStripMenuItem_Click(object sender, EventArgs e)
+        private void Main_Shown(object sender, EventArgs e)
         {
-            Console.WriteLine("Opening settings dialog.");
+            Font = SystemFonts.MessageBoxFont;
+            createMenu();
+            updateSoftwareList();
+        }
+
+        private void createMenu()
+        {
+            MainMenu mainMenu = new MainMenu();
+
+            MenuItem propertiesMenu = new MenuItem("Properties");
+
+            MenuItem chooseSoftwareMenu = new MenuItem("Choose software", new EventHandler(chooseSoftwareMenuClicked));
+            MenuItem timeTravelMenu = new MenuItem("Time travel", new EventHandler(timeTravelMenuClicked));
+
+            propertiesMenu.MenuItems.Add(chooseSoftwareMenu);
+            propertiesMenu.MenuItems.Add(timeTravelMenu);
+
+            mainMenu.MenuItems.Add(propertiesMenu);
+
+            MenuItem helpMenu = new MenuItem("Help");
+            MenuItem aboutMenu = new MenuItem("About", new EventHandler(AboutMenuClicked));
+
+            helpMenu.MenuItems.Add(aboutMenu);
+
+            mainMenu.MenuItems.Add(helpMenu);
+
+            Menu = mainMenu;
+        }
+
+        private void chooseSoftwareMenuClicked(object sender, EventArgs e)
+        {
+            Console.WriteLine("Opening choose software dialog.");
             if (!settingDialog.Visible)
             {
                 settingDialog.ShowDialog();
             }
         }
 
-        private void timeMachineToolStripMenuItem_Click(object sender, EventArgs e)
+        private void timeTravelMenuClicked(object sender, EventArgs e)
         {
             Console.WriteLine("Opening time machine dialog.");
             if (!timeMachineDialog.Visible)
@@ -154,12 +184,7 @@ namespace BluffingoUpdater
             }
         }
 
-        private void Main_Shown(object sender, EventArgs e)
-        {
-            updateSoftwareList();
-        }
-
-        private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
+        private void AboutMenuClicked(object sender, EventArgs e)
         {
             AboutBox aboutBox = new AboutBox();
             aboutBox.ShowDialog();

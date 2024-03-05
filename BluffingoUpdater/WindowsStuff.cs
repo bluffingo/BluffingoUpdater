@@ -7,9 +7,9 @@ using System.Text;
 
 namespace BluffingoUpdater
 {
-    class Icons
+    class WindowsStuff
     {
-        public static Icon Extract(string filePath, int index, bool largeIcon = true)
+        public static Icon ExtractIcon(string filePath, int index, bool largeIcon = true)
         {
             if (filePath == null)
                 throw new ArgumentNullException(nameof(filePath));

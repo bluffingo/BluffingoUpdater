@@ -22,7 +22,7 @@ namespace BluffingoUpdater
             InitializeComponent();
         }
 
-        private void clear()
+        private void Clear()
         {
             listView1.Clear();
             imageList1.Images.Clear();
@@ -30,8 +30,9 @@ namespace BluffingoUpdater
 
         private void SettingDialog_Load(object sender, EventArgs e)
         {
-            clear();
-            string s = request.getSoftware();
+            Font = SystemFonts.MessageBoxFont;
+            Clear();
+            string s = request.GetSoftware();
 
             var obj = ser.DeserializeObject(s) as ICollection;
 
@@ -63,13 +64,13 @@ namespace BluffingoUpdater
 
                 listView1.Items.Add(item1);
             }
-            makeTheColumns();
+            MakeTheColumns();
         }
 
-        private void makeTheColumns()
+        private void MakeTheColumns()
         {
             //imageList1.Images.Add("GenericIcon", BluffingoUpdater.Properties.Resources.icon);
-            imageList1.Images.Add("GenericIcon", Icons.Extract("shell32.dll", 162, true));
+            imageList1.Images.Add("GenericIcon", WindowsStuff.ExtractIcon("shell32.dll", 162, true));
             for (int i = 0; i < listView1.Items.Count; i++)
             {
                 listView1.Items[i].ImageIndex = 0;

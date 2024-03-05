@@ -83,7 +83,7 @@
     <Compile Include="AboutBox.Designer.cs">
       <DependentUpon>AboutBox.cs</DependentUpon>
     </Compile>
-    <Compile Include="Icons.cs" />
+    <Compile Include="WindowsStuff.cs" />
     <Compile Include="Main.cs">
       <SubType>Form</SubType>
     </Compile>

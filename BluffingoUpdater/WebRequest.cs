@@ -24,7 +24,7 @@ namespace BluffingoUpdater
             client.Headers.Add("user-agent", "Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.2; .NET CLR 1.0.3705;)");
         }
 
-        public void downloadAndRunSoftware(string url)
+        public void DownloadAndRunInstaller(string url)
         {
             Uri uri = new Uri(url);
             filename = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "Temp/example.exe");
@@ -45,7 +45,7 @@ namespace BluffingoUpdater
             }
         }
 
-        public string getVersions()
+        public string GetVersions()
         {
             Stream data = client.OpenRead(domain + "/api/get_versions/" + timeMachineDate.ToString("yyyy-MM-dd"));
             StreamReader reader = new StreamReader(data);
@@ -56,7 +56,7 @@ namespace BluffingoUpdater
             return s;
         }
 
-        public string getSoftware()
+        public string GetSoftware()
         {
             Stream data = client.OpenRead(domain + "/api/get_software");
             StreamReader reader = new StreamReader(data);

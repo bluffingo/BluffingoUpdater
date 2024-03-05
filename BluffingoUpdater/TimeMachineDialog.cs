@@ -18,14 +18,19 @@ namespace BluffingoUpdater
             InitializeComponent();
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void Button1_Click(object sender, EventArgs e)
         {
 
         }
 
-        private void monthCalendar1_DateChanged(object sender, DateRangeEventArgs e)
+        private void MonthCalendar1_DateChanged(object sender, DateRangeEventArgs e)
         {
             time = e.Start;
+        }
+
+        private void TimeMachineDialog_Load(object sender, EventArgs e)
+        {
+            Font = SystemFonts.MessageBoxFont;
         }
     }
 }
