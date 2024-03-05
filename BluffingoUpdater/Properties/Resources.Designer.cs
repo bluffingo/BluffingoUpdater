@@ -63,9 +63,9 @@ namespace BluffingoUpdater.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap clock {
+        internal static System.Drawing.Bitmap George_W_Bush {
             get {
-                object obj = ResourceManager.GetObject("clock", resourceCulture);
+                object obj = ResourceManager.GetObject("George-W-Bush", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
